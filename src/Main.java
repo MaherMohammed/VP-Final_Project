@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.util.concurrent.locks.Condition;
 
 public class Main {
     public static void main(String[] args) {
@@ -72,7 +73,8 @@ public class Main {
 
     }
 
-    public static JPanel createIfStatement(){
+
+    public static JPanel createIfStatement() {
         JPanel p = new JPanel();
         BoxLayout boxLayout = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(boxLayout);
@@ -103,5 +105,19 @@ public class Main {
         p.add(resStatement);
 
         return p;
+    }
+
+    class Condition {
+        String question, answer;
+        JPanel view;
+        public Condition(String q, String ans) {
+            question = q;
+            answer = ans;
+            view = createView(q, ans);
+        }
+        public JPanel createView(String q, String ans) {
+            return new JPanel();
+        }
+
     }
 }
