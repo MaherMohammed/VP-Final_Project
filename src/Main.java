@@ -158,7 +158,7 @@ public class Main {
         //if statement
         JPanel ifStatement = new JPanel();
         ifStatement.setLayout(new FlowLayout());
-        JLabel ifLabel = new JLabel("IF");
+        JLabel ifLabel = new JLabel("Question");
         ifLabel.setOpaque(true);
         ifLabel.setBackground(Color.white);
         ifLabel.setFont(new Font("Verdana", Font.BOLD, 15));
