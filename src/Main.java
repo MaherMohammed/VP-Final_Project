@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.concurrent.locks.Condition;
@@ -83,7 +84,13 @@ public class Main {
         ifStatement.setLayout(new FlowLayout());
         JLabel ifLabel = new JLabel("IF");
         ifLabel.setOpaque(true);
-        ifLabel.setBackground(Color.BLUE);
+        ifLabel.setBackground(Color.white);
+        ifLabel.setFont(new Font("Verdana", Font.BOLD, 15));
+        Border border = BorderFactory.createLineBorder(Color.BLUE, 5);
+
+        // set the border of this component
+        ifLabel.setBorder(border);
+
         //question text field
         JTextField question = new JTextField(15);
 
@@ -98,6 +105,7 @@ public class Main {
         JLabel resLabel = new JLabel("RESPONSE");
         resLabel.setOpaque(true);
         resLabel.setBackground(Color.red);
+        resLabel.setFont(new Font("Verdana", Font.BOLD, 15));
         JTextField res = new JTextField(15);
         resStatement.add(resLabel);
         resStatement.add(res);
