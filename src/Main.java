@@ -72,15 +72,33 @@ public class Main {
         writingArea.add(userWords,BorderLayout.WEST);
         writingArea.add(enterButton,BorderLayout.EAST);
 
+        JPanel chatArea = new JPanel();
+        BoxLayout chatAreaLayout = new BoxLayout(chatArea, BoxLayout.Y_AXIS);
+        chatArea.setLayout(chatAreaLayout);
+
         enterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String question = userWords.getText();
                 boolean answered = false;
                 for(Condition c : panels) {
-                    if(c.question.getText() == question) {
+                    if(c.question.getText().equals(question)) {
                         answered = true;
-                        System.out.println(c.answer.getText());
+//                        System.out.println(c.answer.getText());
+                        JPanel questionPanel = new JPanel();
+                        JPanel resPanel = new JPanel();
+                        questionPanel.setLayout(new BorderLayout());
+                        resPanel.setLayout(new BorderLayout());
+
+                        JLabel questionLabel = new JLabel(question);
+                        questionPanel.add(questionLabel,BorderLayout.EAST);
+                        JLabel resLabel = new JLabel(c.answer.getText());
+                        resPanel.add(resLabel, BorderLayout.WEST);
+                        chatArea.add(questionPanel);
+                        chatArea.add(resPanel);
+                        frame.revalidate();
+                        frame.repaint();
+                        userWords.setText("");
                         break;
                         //chat answer
                     }
@@ -88,9 +106,25 @@ public class Main {
                 }
                 if(!answered) {
                     //handle unknown questions
+                    JPanel questionPanel = new JPanel();
+                    JPanel resPanel = new JPanel();
+                    questionPanel.setLayout(new BorderLayout());
+                    resPanel.setLayout(new BorderLayout());
+
+                    JLabel questionLabel = new JLabel(question);
+                    questionPanel.add(questionLabel,BorderLayout.EAST);
+                    JLabel resLabel = new JLabel("I don't know. Can you please enter a valid question?");
+                    resPanel.add(resLabel, BorderLayout.WEST);
+                    chatArea.add(questionPanel);
+                    chatArea.add(resPanel);
+                    frame.revalidate();
+                    frame.repaint();
+                    userWords.setText("");
+
                 }
             }
         });
+        chatBot.add(chatArea,BorderLayout.NORTH);
         chatBot.add(writingArea,BorderLayout.SOUTH);
         frame.add(chatBot,BorderLayout.EAST);
 
