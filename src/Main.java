@@ -50,19 +50,58 @@ public class Main {
         frame.add(chatBot,BorderLayout.EAST);
 
         //build the area that contains the chat
-        JPanel chatArea = new JPanel();
-        BoxLayout charAreaLayout = new BoxLayout(chatArea,BoxLayout.Y_AXIS);
-        chatArea.setLayout(charAreaLayout);
+//        JPanel chatArea = new JPanel();
+//        BoxLayout charAreaLayout = new BoxLayout(chatArea,BoxLayout.Y_AXIS);
+//        chatArea.setLayout(charAreaLayout);
+//        JTextArea chatArea = new JTextArea();
+//        chatArea.se
+//        JLabel l = new JLabel("hello world");
+//        frame.add(l,BorderLayout.CENTER);
 
+//        chatBot.add(chatArea, BorderLayout.NORTH);
 
-
-        chatBot.add(chatArea, BorderLayout.NORTH);
-
+        JPanel h = new JPanel();
+        h.setLayout(new BorderLayout());
+        h.add(createIfStatement(),BorderLayout.NORTH);
+        frame.add(h,BorderLayout.CENTER);
 
         frame.setLocationRelativeTo(null);
 //        frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
+    }
+
+    public static JPanel createIfStatement(){
+        JPanel p = new JPanel();
+        BoxLayout boxLayout = new BoxLayout(p, BoxLayout.Y_AXIS);
+        p.setLayout(boxLayout);
+        //if statement
+        JPanel ifStatement = new JPanel();
+        ifStatement.setLayout(new FlowLayout());
+        JLabel ifLabel = new JLabel("IF");
+        ifLabel.setOpaque(true);
+        ifLabel.setBackground(Color.BLUE);
+        //question text field
+        JTextField question = new JTextField(15);
+
+        ifStatement.add(ifLabel);
+        ifStatement.add(question);
+
+        p.add(ifStatement);
+
+        // response field
+        JPanel resStatement = new JPanel();
+        resStatement.setLayout(new FlowLayout());
+        JLabel resLabel = new JLabel("RESPONSE");
+        resLabel.setOpaque(true);
+        resLabel.setBackground(Color.red);
+        JTextField res = new JTextField(15);
+        resStatement.add(resLabel);
+        resStatement.add(res);
+
+        p.add(resStatement);
+
+        return p;
     }
 }
