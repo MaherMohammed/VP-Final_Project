@@ -49,6 +49,16 @@ public class Main {
         chatBot.add(writingArea,BorderLayout.SOUTH);
         frame.add(chatBot,BorderLayout.EAST);
 
+        //build the area that contains the chat
+        JPanel chatArea = new JPanel();
+        BoxLayout charAreaLayout = new BoxLayout(chatArea,BoxLayout.Y_AXIS);
+        chatArea.setLayout(charAreaLayout);
+
+
+
+        chatBot.add(chatArea, BorderLayout.NORTH);
+
+
         frame.setLocationRelativeTo(null);
 //        frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
