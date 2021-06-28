@@ -19,10 +19,10 @@ public class Main {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
         // width will store the width of the screen
-        int width = (int)size.getWidth();
+        int width = (int)size.getWidth()/2;
 
         // height will store the height of the screen
-        int height = (int)size.getHeight();
+        int height = (int)size.getHeight()/2;
 
         frame = new JFrame("Visual Programming For Expert System");
         frame.setSize(width, height);
@@ -155,7 +155,7 @@ public class Main {
         //if statement
         JPanel ifStatement = new JPanel();
         ifStatement.setLayout(new FlowLayout());
-        JLabel ifLabel = new JLabel("IF");
+        JLabel ifLabel = new JLabel("Question");
         ifLabel.setOpaque(true);
         ifLabel.setBackground(Color.white);
         ifLabel.setFont(new Font("Verdana", Font.BOLD, 15));
