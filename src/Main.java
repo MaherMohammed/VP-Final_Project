@@ -11,7 +11,7 @@ public class Main {
     static JFrame frame;
     static JPanel blocksInCenter;
 
-    static ArrayList<JPanel> panels;
+    static ArrayList<Condition> panels;
 
     public static void main(String[] args) {
         panels = new ArrayList<>();
@@ -45,11 +45,12 @@ public class Main {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel d = createIfStatement();
+                Condition c = createIfStatement();
+                JPanel d = c.view;
                 blocksInCenter.add(d);
                 frame.revalidate();
                 frame.repaint();
-                panels.add(d);
+                panels.add(c);
             }
         });
 
@@ -71,6 +72,25 @@ public class Main {
         writingArea.add(userWords,BorderLayout.WEST);
         writingArea.add(enterButton,BorderLayout.EAST);
 
+        enterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String question = userWords.getText();
+                boolean answered = false;
+                for(Condition c : panels) {
+                    if(c.question.getText() == question) {
+                        answered = true;
+                        System.out.println(c.answer.getText());
+                        break;
+                        //chat answer
+                    }
+
+                }
+                if(!answered) {
+                    //handle unknown questions
+                }
+            }
+        });
         chatBot.add(writingArea,BorderLayout.SOUTH);
         frame.add(chatBot,BorderLayout.EAST);
 
@@ -88,7 +108,7 @@ public class Main {
 //    public static
 
 
-    public static JPanel createIfStatement() {
+    public static Condition createIfStatement() {
         JPanel p = new JPanel();
         BoxLayout boxLayout = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(boxLayout);
@@ -124,17 +144,17 @@ public class Main {
         resStatement.add(res);
 
         p.add(resStatement);
-
-        return p;
+        Condition c = new Condition(question, res, p);
+        return c;
     }
 
-    class Condition {
-        String question, answer;
+    static class Condition {
+        JTextField question, answer;
         JPanel view;
-        public Condition(String q, String ans) {
+        public Condition(JTextField q, JTextField res, JPanel jp) {
             question = q;
-            answer = ans;
-            view = createView(q, ans);
+            answer = res;
+            view = jp;
         }
         public JPanel createView(String q, String ans) {
             return new JPanel();
