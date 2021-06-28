@@ -19,10 +19,10 @@ public class Main {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
         // width will store the width of the screen
-        int width = (int)size.getWidth();
+        int width = (int)size.getWidth()/2;
 
         // height will store the height of the screen
-        int height = (int)size.getHeight();
+        int height = (int)size.getHeight()/2;
 
         frame = new JFrame("Visual Programming For Expert System");
         frame.setSize(width, height);
@@ -124,7 +124,12 @@ public class Main {
                 }
             }
         });
-        chatBot.add(chatArea,BorderLayout.NORTH);
+
+        JScrollPane paneChat = new JScrollPane();
+        paneChat.setViewportView (chatArea);
+
+
+        chatBot.add(paneChat,BorderLayout.BEFORE_LINE_BEGINS);
         chatBot.add(writingArea,BorderLayout.SOUTH);
 
 
@@ -133,8 +138,6 @@ public class Main {
 
 
         frame.add(chatBot,BorderLayout.EAST);
-
-
 
         frame.add(pane,BorderLayout.CENTER);
 
