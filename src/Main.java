@@ -2,10 +2,19 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.concurrent.locks.Condition;
 
 public class Main {
+    static JFrame frame;
+    static JPanel blocksInCenter;
+
+    static ArrayList<JPanel> panels;
+
     public static void main(String[] args) {
+        panels = new ArrayList<>();
 
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -15,7 +24,7 @@ public class Main {
         // height will store the height of the screen
         int height = (int)size.getHeight();
 
-        JFrame frame = new JFrame("Visual Programming For Expert System");
+        frame = new JFrame("Visual Programming For Expert System");
         frame.setSize(width, height);
 
         //build the panel for the blocks on the west of the screen
@@ -24,14 +33,28 @@ public class Main {
         // to set the box layout
         blocksPanel.setLayout(boxlayout);
 
-        JLabel label = new JLabel("testing label in west");
-//        label.setIcon(new ImageIcon("Images/me.jpg"));
-        JButton button = new JButton();
-        button.setText("Button in west");
-        blocksPanel.add(button);
-        blocksPanel.add(label);
-        frame.add(blocksPanel,BorderLayout.WEST);
 
+
+        JButton button = new JButton();
+        button.setText("Add IF Block");
+
+        blocksInCenter = new JPanel();
+        BoxLayout boxInCenter = new BoxLayout(blocksInCenter, BoxLayout.Y_AXIS);
+        blocksInCenter.setLayout(boxInCenter);
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel d = createIfStatement();
+                blocksInCenter.add(d);
+                frame.revalidate();
+                frame.repaint();
+                panels.add(d);
+            }
+        });
+
+        blocksPanel.add(button);
+        frame.add(blocksPanel,BorderLayout.WEST);
 
         //building the chatbot on the east
         JPanel chatBot = new JPanel();
@@ -51,21 +74,9 @@ public class Main {
         chatBot.add(writingArea,BorderLayout.SOUTH);
         frame.add(chatBot,BorderLayout.EAST);
 
-        //build the area that contains the chat
-//        JPanel chatArea = new JPanel();
-//        BoxLayout charAreaLayout = new BoxLayout(chatArea,BoxLayout.Y_AXIS);
-//        chatArea.setLayout(charAreaLayout);
-//        JTextArea chatArea = new JTextArea();
-//        chatArea.se
-//        JLabel l = new JLabel("hello world");
-//        frame.add(l,BorderLayout.CENTER);
 
-//        chatBot.add(chatArea, BorderLayout.NORTH);
 
-        JPanel h = new JPanel();
-        h.setLayout(new BorderLayout());
-        h.add(createIfStatement(),BorderLayout.NORTH);
-        frame.add(h,BorderLayout.CENTER);
+        frame.add(blocksInCenter,BorderLayout.CENTER);
 
         frame.setLocationRelativeTo(null);
 //        frame.setLayout(null);
@@ -73,6 +84,8 @@ public class Main {
         frame.setVisible(true);
 
     }
+
+//    public static
 
 
     public static JPanel createIfStatement() {
