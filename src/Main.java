@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.util.concurrent.locks.Condition;
 
 public class Main {
     public static void main(String[] args) {
@@ -64,5 +65,17 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
+    }
+    static class Condition {
+        String question, answer;
+        JPanel view;
+        public Condition(String q, String ans) {
+            question = q;
+            answer = ans;
+            view = createView(q, ans);
+        }
+        public JPanel createView(String q, String ans) {
+            return new JPanel();
+        }
     }
 }
