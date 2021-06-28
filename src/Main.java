@@ -126,11 +126,17 @@ public class Main {
         });
         chatBot.add(chatArea,BorderLayout.NORTH);
         chatBot.add(writingArea,BorderLayout.SOUTH);
+
+
+        JScrollPane pane = new JScrollPane();
+        pane.setViewportView (blocksInCenter);
+
+
         frame.add(chatBot,BorderLayout.EAST);
 
 
 
-        frame.add(blocksInCenter,BorderLayout.CENTER);
+        frame.add(pane,BorderLayout.CENTER);
 
         frame.setLocationRelativeTo(null);
 //        frame.setLayout(null);
